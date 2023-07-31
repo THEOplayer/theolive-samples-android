@@ -4,31 +4,22 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Favorite
-import androidx.compose.material3.Icon
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.theolive.example.ui.theme.ExampleTheme
 import com.theolive.player.api.THEOliveChromeless
 import com.theolive.player.api.rememberTHEOlivePlayer
-import kotlinx.coroutines.launch
 
 class ActivityWithTHEOliveUI : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContent {
-            val scope = rememberCoroutineScope()
             // The THEOlive player API.
             val player = rememberTHEOlivePlayer()
             ExampleTheme(darkTheme = true) {
@@ -49,19 +40,7 @@ class ActivityWithTHEOliveUI : ComponentActivity() {
                             modifier = Modifier.aspectRatio(16f / 9)
                         )
                         // A button to load a channel into the player.
-                        ListItem(
-                            headlineContent = {
-                                Text(MainActivity.channelId)
-                            },
-                            modifier = Modifier.clickable {
-                                scope.launch {
-                                    player.loadChannel(MainActivity.channelId)
-                                }
-                            },
-                            leadingContent = {
-                                Icon(Icons.Rounded.Favorite, contentDescription = null)
-                            },
-                        )
+                        LoadChannelButton(player = player, channelId = MainActivity.channelId)
                     }
                 }
             }
