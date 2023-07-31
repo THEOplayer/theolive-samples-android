@@ -15,6 +15,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.theolive.example.ui.theme.ExampleTheme
@@ -42,42 +43,41 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Column(modifier = Modifier.fillMaxSize()) {
                         Title(text = "Select a THEOlive example:")
-                        ListItem(
-                            headlineContent = {
-                                Text("Example with THEOliveUI.")
-                            },
-                            modifier = Modifier.clickable {
-                                context.startActivity(
-                                    Intent(
-                                        context,
-                                        ActivityWithTHEOliveChromeless::class.java
-                                    )
-                                )
-                            },
-                            leadingContent = {
-                                Icon(Icons.Rounded.Favorite, contentDescription = null)
-                            },
+                        OpenActivityButton(
+                            text = "Example with THEOliveUI",
+                            intent = Intent(
+                                context,
+                                ActivityWithTHEOliveUI::class.java
+                            )
                         )
-                        ListItem(
-                            headlineContent = {
-                                Text("Example THEOliveChromeless.")
-                            },
-                            modifier = Modifier.clickable {
-                                context.startActivity(
-                                    Intent(
-                                        context,
-                                        ActivityWithTHEOliveUI::class.java
-                                    )
-                                )
-                            },
-                            leadingContent = {
-                                Icon(Icons.Rounded.Favorite, contentDescription = null)
-                            },
+                        OpenActivityButton(
+                            text = "Example with THEOliveChromeless",
+                            intent = Intent(
+                                context,
+                                ActivityWithTHEOliveChromeless::class.java
+                            )
                         )
                     }
                 }
             }
         }
     }
+}
+
+
+@Composable
+fun OpenActivityButton(text: String, intent: Intent) {
+    val context = LocalContext.current
+    ListItem(
+        headlineContent = {
+            Text(text)
+        },
+        modifier = Modifier.clickable {
+            context.startActivity(intent)
+        },
+        leadingContent = {
+            Icon(Icons.Rounded.Favorite, contentDescription = null)
+        },
+    )
 }
 
