@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.theolive.example.ui.theme.ExampleTheme
-import com.theolive.player.api.THEOliveTheme
-import com.theolive.player.api.THEOliveUI
+import com.theolive.player.api.THEOliveChromeless
 import com.theolive.player.api.rememberTHEOlivePlayer
 
 class ActivityWithTHEOliveChromeless : ComponentActivity() {
@@ -33,18 +31,14 @@ class ActivityWithTHEOliveChromeless : ComponentActivity() {
                     Column(modifier = Modifier.fillMaxSize()) {
                         // The title of the activity.
                         Title(
-                            "THEOlive With UI",
+                            "THEOlive Chromeless",
                             modifier = Modifier.align(Alignment.CenterHorizontally)
                         )
                         // The THEOlive player view, with the default UI.
-                        THEOliveTheme {
-                            Surface(
-                                modifier = Modifier.aspectRatio(16f / 9f),
-                                color = MaterialTheme.colorScheme.background
-                            ) {
-                                THEOliveUI(player = player)
-                            }
-                        }
+                        THEOliveChromeless(
+                            player = player,
+                            modifier = Modifier.aspectRatio(16f / 9)
+                        )
                         // A button to load a channel into the player.
                         LoadChannelButton(player = player, channelId = MainActivity.channelId)
                     }
