@@ -45,6 +45,7 @@ class ActivityWithTHEOliveUI : ComponentActivity() {
                             }
                         }
                         // A button to load a channel into the player.
+                        Label(text = "Press this button to load the channel:")
                         LoadChannelButton(player = player, channelId = MainActivity.channelId)
                     }
                 }

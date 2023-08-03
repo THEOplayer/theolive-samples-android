@@ -17,3 +17,14 @@ fun Title(text: String, modifier: Modifier = Modifier) {
         style = MaterialTheme.typography.headlineMedium
     )
 }
+
+@Composable
+fun Label(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        modifier = modifier
+            .padding(8.dp),
+        style = MaterialTheme.typography.bodyMedium
+    )
+}
+
