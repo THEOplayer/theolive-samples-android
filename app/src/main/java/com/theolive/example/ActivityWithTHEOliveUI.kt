@@ -12,9 +12,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.theolive.example.ui.theme.ExampleTheme
-import com.theolive.player.api.THEOliveTheme
-import com.theolive.player.api.THEOliveUI
-import com.theolive.player.api.rememberTHEOlivePlayer
+import com.theolive.player.ui.THEOliveTheme
+import com.theolive.player.ui.UiController
+import com.theolive.player.ui.rememberPlayer
 
 class ActivityWithTHEOliveUI : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class ActivityWithTHEOliveUI : ComponentActivity() {
         this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContent {
             // The THEOlive player API.
-            val player = rememberTHEOlivePlayer()
+            val player = rememberPlayer()
             ExampleTheme(darkTheme = true) {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -41,7 +41,7 @@ class ActivityWithTHEOliveUI : ComponentActivity() {
                                 modifier = Modifier.aspectRatio(16f / 9f),
                                 color = MaterialTheme.colorScheme.background
                             ) {
-                                THEOliveUI(player = player)
+                                UiController(player = player)
                             }
                         }
                         // A button to load a channel into the player.

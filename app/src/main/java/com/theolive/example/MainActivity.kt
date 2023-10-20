@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.theolive.example.ui.theme.ExampleTheme
-import com.theolive.player.api.rememberTHEOlivePlayer
 
 class MainActivity : ComponentActivity() {
 
@@ -34,7 +33,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             // The THEOlive player API.
             val context = LocalContext.current
-            val player = rememberTHEOlivePlayer()
             ExampleTheme(darkTheme = true) {
                 // A surface container using the 'background' color from the theme
                 Surface(
